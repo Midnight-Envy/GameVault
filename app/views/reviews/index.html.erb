@@ -1,0 +1,15 @@
+<h1>Reviews for <%= @game.name %></h1>
+
+<%= link_to "Write a Review", new_game_review_path(@game) %>
+
+<% @reviews.each do |review| %>
+  <div>
+    <h2><%= review.title %></h2>
+
+    <p><%= review.body %></p>
+    <p>Rating: <%= review.rating %>/10</p>
+    <p>Reviewed by: <%= review.user.username %></p>
+  </div>
+<% end %>
+
+<%= link_to "Back to Game", game_path(@game) %>
