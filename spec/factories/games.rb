@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :game do
-    name { "MyString" }
-    developer { "MyString" }
-    release_year { 1 }
-    genre { "MyString" }
+    sequence(:name) { |n| "Game #{n}" }
+    developer { "Test Developer" }
+    release_year { 2025 }
+    genre { "Action" }
   end
 end

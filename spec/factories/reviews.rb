@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :review do
-    user { nil }
-    game { nil }
-    title { "MyString" }
-    body { "MyText" }
-    rating { 1 }
+    association :user
+    association :game
+    title { "Great Game" }
+    body { "This is a test review." }
+    rating { 9 }
   end
 end

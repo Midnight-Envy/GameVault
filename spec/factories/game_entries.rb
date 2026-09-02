@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :game_entry do
-    user { nil }
-    game { nil }
-    status { "MyString" }
-    rating { 1 }
-    hours_played { 1 }
-    notes { "MyText" }
+    association :user
+    association :game
+    status { "Backlog" }
+    rating { 8 }
+    hours_played { 10 }
+    notes { "Test notes" }
   end
 end
