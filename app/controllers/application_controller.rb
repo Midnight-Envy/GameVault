@@ -10,4 +10,10 @@ private
   def logged_in?
     current_user.present?
   end
+
+  def require_login
+    return if logged_in?
+
+    redirect_to login_path, alert: "You must be logged in to continue."
+  end
 end

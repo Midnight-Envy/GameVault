@@ -5,6 +5,7 @@ class GameEntry < ApplicationRecord
   validates :status, presence: true
   validates :rating, numericality: { in: 1..10 }, allow_nil: true
   validates :hours_played, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :game_id, uniqueness: { scope: :user_id }
 
   scope :playing, -> { where(status: "Playing") }
   scope :completed, -> { where(status: "Completed") }

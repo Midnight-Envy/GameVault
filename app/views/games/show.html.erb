@@ -4,4 +4,32 @@
 <p><strong>Release Year:</strong> <%= @game.release_year %></p>
 <p><strong>Genre:</strong> <%= @game.genre %></p>
 
+<h2>Add to My Vault</h2>
+
+<%= form_with model: GameEntry.new do |f| %>
+  <%= f.hidden_field :game_id, value: @game.id %>
+
+  <div>
+    <%= f.label :status %>
+    <%= f.select :status, ["Backlog", "Playing", "Completed"] %>
+  </div>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.number_field :rating, min: 1, max: 10 %>
+  </div>
+
+  <div>
+    <%= f.label :hours_played %>
+    <%= f.number_field :hours_played, min: 0 %>
+  </div>
+
+  <div>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <%= f.submit "Add to My Vault" %>
+<% end %>
+
 <%= link_to "Back to Games", games_path %>
