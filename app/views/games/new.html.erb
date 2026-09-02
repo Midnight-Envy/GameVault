@@ -1,0 +1,37 @@
+<h1>Add a Game</h1>
+
+<% if @game.errors.any? %>
+  <div>
+    <h2>Unable to add game:</h2>
+
+    <ul>
+      <% @game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @game do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :developer %>
+    <%= f.text_field :developer %>
+  </div>
+
+  <div>
+    <%= f.label :release_year %>
+    <%= f.number_field :release_year %>
+  </div>
+
+  <div>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+  </div>
+
+  <%= f.submit "Add Game" %>
+<% end %>
