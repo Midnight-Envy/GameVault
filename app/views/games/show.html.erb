@@ -32,4 +32,12 @@
   <%= f.submit "Add to My Vault" %>
 <% end %>
 
+<h2>Reviews</h2>
+
+<%= link_to "View Reviews", game_reviews_path(@game) %>
+|
+<%= link_to "Write a Review", new_game_review_path(@game) %>
+
+<br><br>
+
 <%= link_to "Back to Games", games_path %>

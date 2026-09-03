@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "sessions#new"
+  
   resources :users, only: [:show]
 
   get "/signup", to: "users#new"

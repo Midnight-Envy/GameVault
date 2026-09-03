@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to games_path
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,18 +1,22 @@
 # These rules apply to the Nitro Umbrella app and all components.
 
-require:
+plugins:
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.3
+  NewCops: enable
   Exclude:
     - 'spec/*'
     - 'spec/**/*'
     - 'vendor/**/*'
     - 'db/schema.rb'
+    - 'db/cable_schema.rb'
+    - 'db/cache_schema.rb'
+    - 'db/queue_schema.rb'
     - 'config/**'
     - 'config/**/*'
-    - 'bin/**'
+    - 'bin/**/*'
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
