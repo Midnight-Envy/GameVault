@@ -9,7 +9,7 @@ RSpec.describe "Games", type: :request do
     end
 
     it "displays games" do
-      game = create(:game, name: "Halo 3")
+      create(:game, name: "Halo 3")
 
       get games_path
 
