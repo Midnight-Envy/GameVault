@@ -61,4 +61,11 @@ RSpec.describe GameEntry, type: :model do
 
     expect(GameEntry.backlog).to include(backlog_entry)
   end
+
+  it "doesnt allow no rating when is completed" do
+    game_entry =build(:game_entry, status: "Completed", rating:nil)
+
+    expect(game_entry).not_to be_valid
+  end
+
 end
