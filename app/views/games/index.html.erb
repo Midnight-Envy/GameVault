@@ -1,12 +1,35 @@
-<h1>Games</h1>
+<div class="page-container">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">GAMEVAULT</p>
+      <h1>Games</h1>
+      <p class="page-subtitle">Browse the games in the GameVault library.</p>
+    </div>
 
-<%= link_to "Add New Game", new_game_path %>
+    <%= link_to "Add New Game", new_game_path, class: "primary-button" %>
+  </div>
 
-<ul>
-  <% @games.each do |game| %>
-    <li>
-      <%= link_to game.name, game_path(game) %>
-      - <%= game.developer %>
-    </li>
-  <% end %>
-</ul>
+  <div class="game-grid">
+    <% @games.each do |game| %>
+      <%= link_to game_path(game), class: "game-card" do %>
+        <div class="game-card-art">
+          <% if game.cover_image.attached? %>
+            <%= image_tag game.cover_image, class: "game-cover" %>
+          <% else %>
+            <%= game.name.first.upcase %>
+          <% end %>
+        </div>
+
+        <div class="game-card-content">
+          <h2><%= game.name %></h2>
+          <p><%= game.developer %></p>
+
+          <div class="game-card-meta">
+            <span><%= game.genre %></span>
+            <span><%= game.release_year %></span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

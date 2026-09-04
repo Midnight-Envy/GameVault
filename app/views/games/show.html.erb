@@ -1,43 +1,58 @@
-<h1><%= @game.name %></h1>
+<div class="content-container">
+  <div class="game-show-card">
+    <div class="game-show-image">
+      <% if @game.cover_image.attached? %>
+        <%= image_tag @game.cover_image, class: "game-show-cover" %>
+      <% else %>
+        <div class="game-show-placeholder">
+          <%= @game.name.first.upcase %>
+        </div>
+      <% end %>
+    </div>
 
-<p><strong>Developer:</strong> <%= @game.developer %></p>
-<p><strong>Release Year:</strong> <%= @game.release_year %></p>
-<p><strong>Genre:</strong> <%= @game.genre %></p>
+    <div class="game-show-info">
+      <h1><%= @game.name %></h1>
 
-<h2>Add to My Vault</h2>
-
-<%= form_with model: GameEntry.new do |f| %>
-  <%= f.hidden_field :game_id, value: @game.id %>
-
-  <div>
-    <%= f.label :status %>
-    <%= f.select :status, ["Backlog", "Playing", "Completed"] %>
+      <p><strong>Developer:</strong> <%= @game.developer %></p>
+      <p><strong>Release Year:</strong> <%= @game.release_year %></p>
+      <p><strong>Genre:</strong> <%= @game.genre %></p>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :rating %>
-    <%= f.number_field :rating, min: 1, max: 10 %>
+  <h2>Add to My Vault</h2>
+
+  <%= form_with model: GameEntry.new do |f| %>
+    <%= f.hidden_field :game_id, value: @game.id %>
+
+    <div>
+      <%= f.label :status %>
+      <%= f.select :status, ["Backlog", "Playing", "Completed"] %>
+    </div>
+
+    <div>
+      <%= f.label :rating %>
+      <%= f.number_field :rating, min: 1, max: 10 %>
+    </div>
+
+    <div>
+      <%= f.label :hours_played %>
+      <%= f.number_field :hours_played, min: 0 %>
+    </div>
+
+    <div>
+      <%= f.label :notes %>
+      <%= f.text_area :notes %>
+    </div>
+
+    <%= f.submit "Add to My Vault" %>
+  <% end %>
+
+  <h2>Reviews</h2>
+
+  <div class="content-actions">
+    <%= link_to "View Reviews", game_reviews_path(@game) %>
+    <%= link_to "Write a Review", new_game_review_path(@game) %>
   </div>
 
-  <div>
-    <%= f.label :hours_played %>
-    <%= f.number_field :hours_played, min: 0 %>
-  </div>
-
-  <div>
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
-
-  <%= f.submit "Add to My Vault" %>
-<% end %>
-
-<h2>Reviews</h2>
-
-<%= link_to "View Reviews", game_reviews_path(@game) %>
-|
-<%= link_to "Write a Review", new_game_review_path(@game) %>
-
-<br><br>
-
-<%= link_to "Back to Games", games_path %>
+  <%= link_to "Back to Games", games_path %>
+</div>

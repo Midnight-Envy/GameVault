@@ -14,9 +14,11 @@ AllCops:
     - 'db/cable_schema.rb'
     - 'db/cache_schema.rb'
     - 'db/queue_schema.rb'
+    - 'db/migrate/**/*'
     - 'config/**'
     - 'config/**/*'
     - 'bin/**/*'
+    
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent

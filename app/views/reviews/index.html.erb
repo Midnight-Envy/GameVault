@@ -1,15 +1,27 @@
-<h1>Reviews for <%= @game.name %></h1>
+<div class="content-container">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">COMMUNITY REVIEWS</p>
+      <h1>Reviews for <%= @game.name %></h1>
+    </div>
 
-<%= link_to "Write a Review", new_game_review_path(@game) %>
-
-<% @reviews.each do |review| %>
-  <div>
-    <h2><%= review.title %></h2>
-
-    <p><%= review.body %></p>
-    <p>Rating: <%= review.rating %>/10</p>
-    <p>Reviewed by: <%= review.user.username %></p>
+    <%= link_to "Write a Review",
+        new_game_review_path(@game),
+        class: "primary-button" %>
   </div>
-<% end %>
 
-<%= link_to "Back to Game", game_path(@game) %>
+  <% @reviews.each do |review| %>
+    <div class="review-card">
+      <h2><%= review.title %></h2>
+
+      <p><%= review.body %></p>
+
+      <div class="review-meta">
+        <span><strong>Rating:</strong> <%= review.rating %>/10</span>
+        <span>Reviewed by <%= review.user.username %></span>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to "Back to Game", game_path(@game) %>
+</div>

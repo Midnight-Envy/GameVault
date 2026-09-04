@@ -1,20 +1,42 @@
-<h1>My GameVault</h1>
+<div class="content-container">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">LIBRARY</p>
+      <h1>My GameVault</h1>
+      <p class="page-subtitle">Track your games, progress, and playtime.</p>
+    </div>
+  </div>
 
-<% @game_entries.each do |entry| %>
-  <div>
-    <h2><%= entry.game.name %></h2>
+  <% @game_entries.each do |entry| %>
+    <div class="vault-card">
+      <div class="vault-card-image">
+        <% if entry.game.cover_image.attached? %>
+          <%= image_tag entry.game.cover_image, class: "vault-cover" %>
+        <% else %>
+          <div class="vault-placeholder">
+            <%= entry.game.name.first.upcase %>
+          </div>
+        <% end %>
+      </div>
 
-    <p>Status: <%= entry.status %></p>
-    <p>Rating: <%= entry.rating %></p>
-    <p>Hours Played: <%= entry.hours_played %></p>
-    <p>Notes: <%= entry.notes %></p>
+      <div class="vault-card-content">
+        <h2><%= entry.game.name %></h2>
 
-    <%= link_to "Edit", edit_game_entry_path(entry) %>
+        <p><strong>Status:</strong> <%= entry.status %></p>
+        <p><strong>Rating:</strong> <%= entry.rating %></p>
+        <p><strong>Hours Played:</strong> <%= entry.hours_played %></p>
+        <p><strong>Notes:</strong> <%= entry.notes %></p>
 
-    <%= button_to "Remove from Vault",
+        <div class="content-actions">
+          <%= link_to "Edit", edit_game_entry_path(entry), class: "secondary-button" %>
+
+          <%= button_to "Remove from Vault",
               game_entry_path(entry),
               method: :delete %>
-  </div>
-<% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-<%= link_to "Browse Games", games_path %>
+  <%= link_to "Browse Games", games_path %>
+</div>
